@@ -106,4 +106,13 @@ function DashboardAdmin() {
   );
 }
 
+const fetchUsers = async (search = "", sortBy = "username", order = "ASC") => {
+  const token = localStorage.getItem("token");
+  const res = await api.get(`/admin/users?search=${search}&sortBy=${sortBy}&order=${order}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  setUsers(res.data);
+};
+
+
 export default DashboardAdmin;
